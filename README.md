@@ -1,4 +1,4 @@
-# 🧠 MindFeed
+# 🔮 MindFeed
 
 **Spaced repetition for ideas — an [OpenClaw](https://openclaw.ai) skill.**
 
@@ -41,7 +41,7 @@ python3 ~/.openclaw/skills/mindfeed/scripts/server.py --port 8787
 
 You should see:
 ```
-🧠 MindFeed server on http://localhost:8787
+🔮 MindFeed server on http://localhost:8787
 ```
 
 ### 2. Open in your browser
