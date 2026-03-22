@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Vault Review server — serves the spaced repetition app and handles state persistence.
+Spellbook server — serves the spaced repetition app and handles state persistence.
 Usage: python3 server.py [--port 8787] [--dir /path/to/data]
 """
 
@@ -13,7 +13,7 @@ import argparse
 DEFAULT_PORT = 8787
 
 def get_args():
-    parser = argparse.ArgumentParser(description="Vault Review server")
+    parser = argparse.ArgumentParser(description="Spellbook server")
     parser.add_argument("--port", type=int, default=DEFAULT_PORT)
     parser.add_argument("--dir", type=str, default=None,
                         help="Data directory containing cards.json (default: skill directory)")
@@ -114,7 +114,7 @@ class VaultReviewHandler(http.server.BaseHTTPRequestHandler):
 
 
 if __name__ == "__main__":
-    print(f"🌀 Vault Review server on http://localhost:{args.port}")
+    print(f"🌀 Spellbook server on http://localhost:{args.port}")
     print(f"   Data: {DATA_DIR}")
     server = http.server.HTTPServer(("", args.port), VaultReviewHandler)
     server.serve_forever()
