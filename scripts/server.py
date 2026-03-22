@@ -17,6 +17,8 @@ def get_args():
     parser.add_argument("--port", type=int, default=DEFAULT_PORT)
     parser.add_argument("--dir", type=str, default=None,
                         help="Data directory containing cards.json (default: skill directory)")
+    parser.add_argument("--host", type=str, default="0.0.0.0",
+                        help="Bind address (default: 0.0.0.0, use 127.0.0.1 for localhost only)")
     return parser.parse_args()
 
 args = get_args()
@@ -45,6 +47,19 @@ if not os.path.exists(state_path):
 
 class VaultReviewHandler(http.server.BaseHTTPRequestHandler):
     def do_GET(self):
+        # Health check
+        if self.path == "/health":
+            self.send_response(200)
+            self.send_header("Content-Type", "application/json")
+            self.end_headers()
+            self.wfile.write(b'{"status":"ok"}')
+            return
+
+        # Serve manifest
+        if self.path == "/manifest.json":
+            self._serve_file(os.path.join(ASSETS_DIR, "manifest.json"), "application/manifest+json")
+            return
+
         # Route requests
         if self.path == "/" or self.path == "":
             self._serve_file(os.path.join(ASSETS_DIR, "index.html"), "text/html")
@@ -114,7 +129,7 @@ class VaultReviewHandler(http.server.BaseHTTPRequestHandler):
 
 
 if __name__ == "__main__":
-    print(f"🌀 Spellbook server on http://localhost:{args.port}")
+    print(f"🔄 Spellbook server on http://localhost:{args.port}")
     print(f"   Data: {DATA_DIR}")
-    server = http.server.HTTPServer(("", args.port), VaultReviewHandler)
+    server = http.server.HTTPServer((args.host, args.port), VaultReviewHandler)
     server.serve_forever()
