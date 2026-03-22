@@ -1,4 +1,5 @@
 # 🔮 MindFeed
+*by [Humanity Labs](https://humanitylabs.ai)*
 
 **Spaced repetition for ideas — an [OpenClaw](https://openclaw.ai) skill.**
 
