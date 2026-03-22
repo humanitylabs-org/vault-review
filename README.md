@@ -6,7 +6,7 @@ SRS Review is a self-hosted spaced repetition app designed not for memorization,
 
 Your OpenClaw agent generates review cards from your conversations, notes, and content — then prompts you to review them at optimal intervals.
 
-![SRS Review Screenshot](assets/screenshot.jpg)
+![SRS Review Screenshot](assets/screenshot.png)
 
 ## What It Does
 
